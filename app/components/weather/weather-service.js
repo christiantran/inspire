@@ -4,8 +4,9 @@ function WeatherService() {
 	var apiUrl = url + encodeURIComponent(url2);
 
 	this.getWeather = function (callWhenDone) {
-		$.get(apiUrl, function (res) {
-			res = JSON.parse(res)
+		$.get(apiUrl) 
+			.then (res=> {
+			var res = JSON.parse(res)
 			localStorage.setItem('weather', JSON.stringify(res))
 			// HEY FUN FACT 
 			// Have you ever wanted to know the temperature measured in kelvin?
