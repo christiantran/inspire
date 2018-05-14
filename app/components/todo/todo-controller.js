@@ -13,39 +13,34 @@ function TodoController() {
 		//FYI DONT EDIT ME :)
 		todoService.getTodos(draw)
 	}
-	//getTodos()
-
-	/*<div class="card bg-light mb-3" style="max-width: 18rem;">
-				<div class="card-header">Header</div>
-				<div class="card-body">
-				  <h5 class="card-title">Light card title</h5>
-				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				</div>
-			  </div>
-			  
-	<button onclick="app.controllers.todoController.removeTodo('${todo._id}')">DELETE</button> */
 
 	function draw(todos) {
 		//WHAT IS MY PURPOSE?
 		//BUILD YOUR TODO TEMPLATE HERE
-		var template = `
-		<ul>
-		<form class="form-inline formStyle todo-font" onsubmit="app.controllers.todoController.addTodoFromForm(event)">
-		<h4>${todos.length} To Do</h4></ul>
-		`
-
+		var template = `<ul>${todos.length} Total To-do's`
 		//DONT FORGET TO LOOP
-
-		for (var i = 0; i < todos.length; i++) {
-			var todo = todos[i]
-			template += `
-			<div class="todo-font todo-format">
-		<li><input name="${todo._id}" type="checkbox" onchange="app.controllers.todoController.toggleTodoStatus('${todo._id}')">
-		<label for="${todo._id}">${todo.description}   <span onclick="app.controllers.todoController.removeTodo('${todo._id}')"></span></label></li>
-		</div>
-		`
+		for (let i = 0; i < todos.length; i++) {
+			const todo = todos[i];
+			if (todo.completed== false) {
+				template += `
+				<div class="todo-font todo-format">
+				<li>${todo.description}</li>
+				<input type="checkbox" onclick="app.controllers.todoController.toggleTodoStatus('${todo._id}')"></input>
+				<button onclick="app.controllers.todoController.removeTodo('${todo._id}')"><i class="far fa-trash-alt"></i></i></button>
+				`
+			}
+			else {
+				template += `
+				<div class="todo-font todo-format">
+				<li>${todo.description}</li>
+				<input type="checkbox" onclick="app.controllers.todoController.toggleTodoStatus('${todo._id}')" checked></input>
+				<button onclick="app.controllers.todoController.removeTodo('${todo._id}')"><i class="far fa-trash-alt"></i></i></button>
+				`
+			}
+			template+`
+			</ul>
+			`
 		}
-
 		document.getElementById("todoList").innerHTML = template
 	}
 
@@ -76,6 +71,7 @@ function TodoController() {
 	}
 
 	this.removeTodo = function (todoId) {
+		//debugger
 		// ask the service to run the remove todo with this id
 		todoService.removeTodo(todoId, getTodos)
 		// ^^^^ THIS LINE OF CODE PROBABLY LOOKS VERY SIMILAR TO THE toggleTodoStatus

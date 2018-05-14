@@ -31,7 +31,7 @@ function TodoService() {
 	this.toggleTodoStatus = function (todoId, cb) {
 		// MAKE SURE WE THINK THIS ONE THROUGH
 		//STEP 1: Find the todo by its index **HINT** todoList
-		
+
 		console.log(todoId)
 		var todoCheck = {}
 		//STEP 2: Change the completed flag to the opposite of what is is **HINT** todo.completed = !todo.completed
@@ -58,9 +58,7 @@ function TodoService() {
 		// Umm this one is on you to write.... It's also unique, like the ajax call above. The method is a DELETE
 		$.ajax({
 			method: 'DELETE',
-			URL: baseUrl + '/' + todoId,
-
-		})
-			.then(cb)
+			url: baseUrl + '/' + todoId
+		}).then(cb)
 	}
 }
