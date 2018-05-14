@@ -26,15 +26,16 @@ function TodoController() {
 				<div class="todo-font todo-format">
 				<li>${todo.description}</li>
 				<input type="checkbox" onclick="app.controllers.todoController.toggleTodoStatus('${todo._id}')"></input>
-				<button onclick="app.controllers.todoController.removeTodo('${todo._id}')"><i class="far fa-trash-alt"></i></i></button>
+				<button onclick="app.controllers.todoController.removeTodo('${todo._id}')"><i class="far fa-trash-alt"></i></button>
 				`
+
 			}
 			else {
 				template += `
 				<div class="todo-font todo-format">
 				<li>${todo.description}</li>
 				<input type="checkbox" onclick="app.controllers.todoController.toggleTodoStatus('${todo._id}')" checked></input>
-				<button onclick="app.controllers.todoController.removeTodo('${todo._id}')"><i class="far fa-trash-alt"></i></i></button>
+				<button onclick="app.controllers.todoController.removeTodo('${todo._id}')"><i class="far fa-trash-alt"></i></button>
 				`
 			}
 			template+`
